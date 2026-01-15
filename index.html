@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solid vCard</title>
+    <style>
+        body { font-family: system-ui; padding: 2rem; }
+    </style>
+    <script type="importmap">
+        {
+          "imports": {
+            "@inrupt/solid-client": "https://esm.sh/@inrupt/solid-client@2.1.2?target=es2022&bundle-deps"
+          }
+        }
+    </script>
+</head>
+<body>
+<p>Edit the profile attribute to point to a real Solid pod profile.</p>
+<solid-vcard-card profile="https://storage.inrupt.com/de032986-51a4-40dd-9a35-2ea17ef00952/profile"></solid-vcard-card>
+
+<script type="module" src="./index.js"></script>
+</body>
+</html>

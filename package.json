@@ -1,0 +1,40 @@
+{
+  "name": "@kiliankil/solid-vcard-card",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Native Web Component that renders a Solid vCard profile",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "types": "./index.d.ts"
+    }
+  },
+  "files": ["src", "index.js", "index.d.ts", "LICENSE"],
+  "keywords": ["solid", "vcard", "webcomponents", "rdf", "web-component", "linked-data"],
+  "sideEffects": true,
+  "license": "MIT",
+  "author": "kiliankil",
+  "peerDependencies": {
+    "@inrupt/solid-client": ">=2.0.0"
+  },
+  "devDependencies": {
+    "@inrupt/solid-client": "^2.1.2"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiliankil/solid-visit-card.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kiliankil/solid-visit-card/issues"
+  },
+  "homepage": "https://github.com/kiliankil/solid-visit-card#readme"
+}
