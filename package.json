@@ -1,6 +1,6 @@
 {
   "name": "@kiliankil/solid-vcard-card",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "Native Web Component that renders a Solid vCard profile",
   "main": "index.js",
@@ -12,8 +12,20 @@
       "types": "./index.d.ts"
     }
   },
-  "files": ["src", "index.js", "index.d.ts", "LICENSE"],
-  "keywords": ["solid", "vcard", "webcomponents", "rdf", "web-component", "linked-data"],
+  "files": [
+    "src",
+    "index.js",
+    "index.d.ts",
+    "LICENSE"
+  ],
+  "keywords": [
+    "solid",
+    "vcard",
+    "webcomponents",
+    "rdf",
+    "web-component",
+    "linked-data"
+  ],
   "sideEffects": true,
   "license": "MIT",
   "author": "kiliankil",
