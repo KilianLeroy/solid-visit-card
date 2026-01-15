@@ -23,7 +23,11 @@ function escapeHtml(str) {
         .replace(/'/g, '&#039;');
 }
 
-export class SolidVCardCard extends HTMLElement {
+// Check if we're in a browser environment
+const isBrowser = typeof window !== 'undefined' && typeof HTMLElement !== 'undefined';
+
+// Define the class conditionally or as a stub
+export const SolidVCardCard = isBrowser ? class SolidVCardCard extends HTMLElement {
     static observedAttributes = ['profile'];
 
     constructor() {
@@ -158,7 +162,7 @@ export class SolidVCardCard extends HTMLElement {
           left: 0;
           right: 0;
           bottom: 0;
-          background: 
+          background:
             linear-gradient(45deg, transparent 48%, rgba(212,175,55,0.1) 49%, rgba(212,175,55,0.1) 51%, transparent 52%),
             linear-gradient(-45deg, transparent 48%, rgba(212,175,55,0.1) 49%, rgba(212,175,55,0.1) 51%, transparent 52%);
           background-size: 60px 60px;
@@ -279,8 +283,14 @@ export class SolidVCardCard extends HTMLElement {
       </div>
     `;
     }
-}
+} : class SolidVCardCard {
+    // Stub class for SSR environments
+    constructor() {
+        console.warn('SolidVCardCard: Web Components are not available in this environment');
+    }
+};
 
-if (!customElements.get('solid-vcard-card')) {
+// Only register the custom element in browser environments
+if (isBrowser && !customElements.get('solid-vcard-card')) {
     customElements.define('solid-vcard-card', SolidVCardCard);
 }

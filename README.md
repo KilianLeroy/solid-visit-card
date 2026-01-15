@@ -23,6 +23,22 @@ or load directly from a CDN (skypack/jsdelivr/unpkg) in the browser.
 ### Attributes
 - `profile` (required): Full URL of the vCard resource in the Solid pod.
 
+### SSR / Nuxt.js Usage
+
+This component is now SSR-compatible and can be used in Nuxt.js or other SSR frameworks:
+
+```vue
+<script setup lang="ts">
+import { SolidVCardCard } from '@kiliankil/solid-vcard-card'
+</script>
+
+<template>
+  <SolidVCardCard profile="https://example.org/profile/card#me" />
+</template>
+```
+
+The component automatically detects the environment and only initializes the Web Component in the browser. During SSR, a stub class is exported that won't cause errors.
+
 ### What it renders
 - Full name (`vcard:fn`)
 - Role (`vcard:role`)
