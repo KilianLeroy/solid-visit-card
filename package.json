@@ -1,6 +1,6 @@
 {
   "name": "@kiliankil/solid-vcard-card",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "type": "module",
   "description": "Native Web Component that renders a Solid vCard profile",
   "main": "index.js",
@@ -43,10 +43,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kiliankil/solid-visit-card.git"
+    "url": "git+https://github.com/KilianLeroy/solid-visit-card.git"
   },
   "bugs": {
-    "url": "https://github.com/kiliankil/solid-visit-card/issues"
+    "url": "https://github.com/KilianLeroy/solid-visit-card/issues"
   },
-  "homepage": "https://github.com/kiliankil/solid-visit-card#readme"
+  "homepage": "https://github.com/KilianLeroy/solid-visit-card#readme"
 }
