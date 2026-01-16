@@ -23,21 +23,89 @@ or load directly from a CDN (skypack/jsdelivr/unpkg) in the browser.
 ### Attributes
 - `profile` (required): Full URL of the vCard resource in the Solid pod.
 
-### SSR / Nuxt.js Usage
+### Using with Vue / Nuxt
 
-This component is now SSR-compatible and can be used in Nuxt.js or other SSR frameworks:
+This package is a native Web Component. In Vue, you should:
+- Import the package for its side effect (it registers the custom element in the browser), and
+- Use the kebab-case tag `<solid-vcard-card>` directly in your templates.
+
+Do not import `{ SolidVCardCard }` as a Vue component or register it in `components: { ... }`. Doing so makes Vue try to call the class constructor as a function and leads to the error: "class constructors must be invoked with 'new'".
+
+#### Vue 3 (Vite)
+
+1) Import once at app startup (client):
+
+```ts
+// main.ts or main.js
+import { createApp } from 'vue';
+import App from './App.vue';
+
+import '@kiliankil/solid-vcard-card'; // registers <solid-vcard-card> in the browser
+
+const app = createApp(App);
+// Optional: silence unknown element warning by telling Vue it's a custom element
+app.config.compilerOptions.isCustomElement = (tag) => tag === 'solid-vcard-card';
+app.mount('#app');
+```
+
+2) Use the tag in any component template:
 
 ```vue
-<script setup lang="ts">
-import { SolidVCardCard } from '@kiliankil/solid-vcard-card'
-</script>
-
 <template>
-  <SolidVCardCard profile="https://example.org/profile/card#me" />
+  <solid-vcard-card profile="https://example.org/profile/card#me" />
 </template>
 ```
 
-The component automatically detects the environment and only initializes the Web Component in the browser. During SSR, a stub class is exported that won't cause errors.
+If you prefer configuring in Vite instead of at runtime:
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+
+export default defineConfig({
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => tag === 'solid-vcard-card',
+        },
+      },
+    }),
+  ],
+});
+```
+
+#### Nuxt 3
+
+1) Create a client-only plugin to load the Web Component in the browser:
+
+```ts
+// plugins/solid-vcard-card.client.ts
+import '@kiliankil/solid-vcard-card';
+```
+
+2) Tell Nuxt/Vue this is a custom element (optional but recommended to silence warnings):
+
+```ts
+// nuxt.config.ts
+export default defineNuxtConfig({
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === 'solid-vcard-card',
+    },
+  },
+});
+```
+
+3) Use the tag in your pages/components:
+
+```vue
+<template>
+  <solid-vcard-card profile="https://example.org/profile/card#me" />
+</template>
+```
+
 
 ### What it renders
 - Full name (`vcard:fn`)
@@ -60,4 +128,3 @@ The component automatically detects the environment and only initializes the Web
 ## Notes
 - Uses `@inrupt/solid-client` and native Custom Elements.
 - No build step required; packaged as pure ESM.
-
